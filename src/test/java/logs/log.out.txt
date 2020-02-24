@@ -1,0 +1,2 @@
+Pr4;metodo;PS;S;RS;ConnSinClose;ConnCompConClose;ConA-USinCommit+;SinA-UConCommit;ConA-UConCommit;GetConNombres;NotWasNull
+		

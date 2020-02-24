@@ -1,0 +1,21 @@
+log4j.debug=false
+
+log4j.rootLogger=INFO,Console, File
+
+log4j.appender.Console=org.apache.log4j.ConsoleAppender
+log4j.appender.Console.layout=org.apache.log4j.PatternLayout
+log4j.appender.Console.layout.conversionPattern=\u001B[34m%m%n
+log4j.appender.Console.threshold=INFO
+log4j.appender.Console.filter.filter1=org.apache.log4j.varia.LevelRangeFilter
+log4j.appender.Console.filter.filter1.levelMin=INFO
+log4j.appender.Console.filter.filter1.levelMax=INFO
+
+
+log4j.appender.File=org.apache.log4j.FileAppender   
+log4j.appender.File.File=src/test/java/logs/log.out
+log4j.appender.File.layout=org.apache.log4j.PatternLayout
+log4j.appender.File.layout.conversionPattern=%d{yyyy/MM/dd HH:mm:ss} ; %m%n
+log4j.appender.File.threshold=WARN
+log4j.appender.File.filter.filter1=org.apache.log4j.varia.LevelRangeFilter
+log4j.appender.File.filter.filter1.levelMin=WARN
+log4j.appender.File.filter.filter1.levelMax=WARN

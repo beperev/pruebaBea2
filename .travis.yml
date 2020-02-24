@@ -1,0 +1,36 @@
+language: java
+
+jdk:
+  - openjdk8
+
+services:
+  - mysql
+
+sudo: required
+
+before_install:
+  - ls -al /etc/mysql
+  - sudo service mysql stop
+  - echo "[mysqld]" > $HOME/.my.cnf
+  - echo "lower-case-table-names = 1" >> $HOME/.my.cnf
+  - cat $HOME/.my.cnf # be sure it registered
+  - service --status-all
+  - sudo sed -i '/\[mysqld\]/a lower_case_table_names = 1 '  /etc/mysql/mysql.conf.d/mysqld.cnf
+  - cat /etc/mysql/my.cnf
+  - sudo service mysql start
+  - mysql --verbose -e  "show variables like 'lower%';" --user=root
+  - mysql -u root --password="" < ./create_tables.sql
+
+
+install:
+ - git remote add original https://github.com/PRBD1920/prbd-practica4.git
+ - git fetch original
+ - git checkout original/master .travis.yml
+ - git checkout original/master pom.xml
+ - git checkout original/master src/test/java/main/TestsPr4.java
+ - git checkout original/master src/test/java/util/TestsUtil.java
+ - git checkout original/master src/conexion.properties
+ - git checkout original/master create_tables.sql
+
+script:
+ - mvn package
